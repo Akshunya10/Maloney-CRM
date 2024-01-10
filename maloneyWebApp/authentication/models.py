@@ -440,6 +440,8 @@ class Department(models.Model):
     class Meta:
         managed = False
         db_table = 'department'
+    def __str__(self): 
+        return self.name
 
 
 class DjangoAdminLog(models.Model):
@@ -972,6 +974,8 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
+    def __str__(self): 
+        return self.first_name
 
 
 class Usersession(models.Model):

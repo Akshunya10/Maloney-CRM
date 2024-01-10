@@ -4,7 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Maloney|
+    {% block title %}
+      
+    {% endblock title %}
+      </title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="stylesheet"  href="{% static 'maloneyWebApp/css/bootstrap.css' %}">
 </head>
@@ -13,7 +17,15 @@
       {% include 'maloneyWebApp/nav.html' %}
     </header>
 
-    <h1>Hello, world!</h1>
+    
+    {% block content %}
+      
+    {% endblock content %}
+      
+    {% block footer %}
+      
+    {% endblock footer %}
+        
 
 
 
