@@ -578,6 +578,10 @@ class LeadStatus(models.Model):
     class Meta:
         managed = False
         db_table = 'lead_status'
+    
+    def __str__(self):
+        return self.name
+    
 
 
 class Leads(models.Model):
@@ -992,6 +996,8 @@ class Usertype(models.Model):
     class Meta:
         managed = False
         db_table = 'usertype'
+    def __str__(self): 
+        return self.title
 
 
 class WorkingMember(models.Model):

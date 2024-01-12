@@ -12,7 +12,7 @@
             <h1 class="display-5">Users</h1>
         </div>
         <div class="col ">
-            <a class="btn btn-primary w-50" role="button" >Add</a>
+            <a class="btn btn-primary w-50" href={% url 'useradd' %} role="button" >Add</a>
         </div>
     </div>
     <div class="row my-3">
@@ -39,9 +39,13 @@
                         <td>{{user.email}}</td>
                         <td>{{user.phone}}</td>
                         <td>{{department|return_item:user.department_id }}</td>
-                        <td>{{user.status}}</td>
+                        {% if user.status == '1' %}
+                        <td style="color:green;">Active</td>
+                        {% else %}
+                        <td style="color:red;">Inactive</td>
+                    {% endif %}
                         <td>
-                            <a class="btn btn-primary" href="#" role="button">EDIT</a>
+                            <a class="btn btn-primary" href={% url 'useredit' user.id %} role="button">EDIT</a>
                             <a class="btn btn-primary" href="#" role="button">PERMISSION</a>
                         </td>
     
