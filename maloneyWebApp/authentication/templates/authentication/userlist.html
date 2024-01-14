@@ -46,7 +46,7 @@
                     {% endif %}
                         <td>
                             <a class="btn btn-primary" href={% url 'useredit' user.id %} role="button">EDIT</a>
-                            <a class="btn btn-primary" href="#" role="button">PERMISSION</a>
+                            <a class="btn btn-primary" href={% url 'userpermission' user.id %} role="button">PERMISSION</a>
                         </td>
     
                       </tr>

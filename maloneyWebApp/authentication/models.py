@@ -1,6 +1,9 @@
 
 # Create your models here.
 from django.db import models
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 
 class AddLeaseProperty(models.Model):
     product_name = models.CharField(max_length=1000)
@@ -817,6 +820,8 @@ class Permission(models.Model):
     class Meta:
         managed = False
         db_table = 'permission'
+    def __str__(self) -> str:
+        return "UserID- "+ str(self.user_id)
 
 
 class ProductName(models.Model):
@@ -964,6 +969,7 @@ class Tracker(models.Model):
         db_table = 'tracker'
 
 
+
 class Users(models.Model):
     first_name = models.CharField(max_length=300)
     last_name = models.CharField(max_length=300)
@@ -980,6 +986,25 @@ class Users(models.Model):
         db_table = 'users'
     def __str__(self): 
         return self.first_name
+
+def post_save_django_user_create(instance,sender,*args,**kwargs):
+    isUserPresent=User.objects.filter(email=instance.email)
+    if(isUserPresent.count()>0):
+        djUser=isUserPresent.first()
+        djUser.username=instance.email
+        djUser.email=instance.email
+        djUser.first_name=instance.first_name
+        djUser.set_password(instance.password)
+        djUser.save()
+    else:  
+        djUser=User(username=instance.email,email=instance.email,first_name=instance.first_name)
+        djUser.set_password(instance.password)
+        djUser.save()
+
+
+
+    
+post_save.connect(post_save_django_user_create,sender=Users)
 
 
 class Usersession(models.Model):

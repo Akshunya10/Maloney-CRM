@@ -1,6 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .models import *
+# from django.contrib.auth.models import User
 import datetime
+from django.contrib.auth import authenticate,login,get_user_model,logout
 # from authentication.forms import UserForm
 
 # Create your views here.
@@ -16,6 +18,28 @@ def userlist(request):
     context['department']=department
     print('department ',department)
     return render(request,'authentication/userlist.html',context)
+
+
+def userlogin(request):
+    if(request.method=="POST"):
+        useremail=request.POST.get("useremail")
+        password=request.POST.get("password")
+        dbuser=Users.objects.filter(email=useremail)
+        djangoUser=User.objects.filter(email=useremail)
+        print('dj',djangoUser)
+        if(djangoUser.count()>0):
+            username=djangoUser.first().username
+            authUser=authenticate(username=username,password=password)
+            print('authuser',authUser)
+        # if(dbuser.count()>0):
+        #     user=dbuser.first()
+            if(authUser):
+                login(request,authUser)
+                print("login success")
+        else:
+            print('user not found')
+
+    return render(request,'authentication/userlogin.html')
 
 def useradd(request):
     context={}
@@ -36,7 +60,8 @@ def useradd(request):
             if(user):
                 user.save()
                 print('user saved', user)
-        return redirect('/users')
+        
+                return redirect('/users')
 
     department=Department.objects.all()
     status=LeadStatus.objects.all()
@@ -90,19 +115,30 @@ def useredit(request,id):
 
     return render(request,'authentication/useredit.html',context)
 
+def userPermission(request,id):
+    context={}
+    if(request.method=="POST"):
+        dbpermissions=Permission.objects.filter(user_id=id)
+        if(dbpermissions.count()>0):
+            permission_instance=dbpermissions.first()
+            permission_data=""
+            for item in request.POST.getlist('permissions'):
+                permission_data+=item+","
+                
+            permission_instance.user_permissions=permission_data
+            permission_instance.save()
 
-def customernewupdate(request,id): 
-    if request.user.is_admin:
-        if request.method=="POST":
-            pi=CustomerNew.objects.get(pk=id)
-            form=CustomerNewForm(request.POST,instance=pi)
-            if form.is_valid():
-                form.save()
-                messages.success(request,"successful")
-                return redirect('addcustomernew')
+        else:
+            permission_data=""
+            for item in request.POST.getlist('permissions'):
+                permission_data+=item
+            permission_instance=Permission(user_id=id,user_permissions=permission_data)
+            permission_instance.save()
+    
+    dbpermissions=Permission.objects.filter(user_id=id).first()
+    if(dbpermissions):
+        permissions=dbpermissions.user_permissions.split(',')
+        context['permissions']=permissions
 
-        pi=CustomerNew.objects.get(pk=id)
-        form=CustomerNewForm(instance=pi)
-        return render(request,'authentication/updatecustomernew.html',{'form':form})
-    else:
-        return redirect('userlogin')
+        return render(request,'authentication/userPermission.html',context)
+    return render(request,'authentication/userPermission.html',context)

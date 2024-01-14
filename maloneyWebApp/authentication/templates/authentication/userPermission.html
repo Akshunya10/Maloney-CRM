@@ -1,0 +1,289 @@
+{% extends 'maloneyWebApp/base.html' %}
+{% load lower_filter %} 
+
+{% block title %}
+    User Permission
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container-fluid my-2">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-5">Permission</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST">
+                {% csrf_token %}
+                <table class="table">
+                    {% comment %} <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead> {% endcomment %}
+                    <tbody>
+
+                      <tr>
+                        <th scope="row">Marketing/Sales</th>
+                        <td>
+                            <div class="form-check form-check-inline">
+
+                                <input class="form-check-input" type="checkbox" id="lead" value="leads" name="permissions" 
+                                {% if 'leads' in permissions   %}
+                                checked
+                                {% endif %}
+                                     >
+                                <label class="form-check-label" for="inlineCheckbox1">Leads</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="assign_leads" value="assign_leads" name="permissions" 
+                                {% if 'assign_leads' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Assign Leads</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="schedule_manager" value="schedule_manager" name="permissions"
+                                {% if 'schedule_manager' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Schedule Manager</label>
+                              </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Lease Propery</th>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="leads_prorperty" value="leads_prorperty" name=permissions
+                                {% if 'leads_prorperty' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox1">Leads Property</label>
+                              </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Operations</th>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="booking" value="booking" name="permissions"
+                                {% if 'booking' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox1">Booking</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="customer_payment" value="customer_payment" name="permissions"
+                                {% if 'customer_payment' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Customer Payment</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="sub_broker_payment" value="sub_broker_payment" name="permissions"
+                                {% if 'sub_broker_payment' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Sub Broker Payment</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="brokerage" value="brokerage" name="permissions"
+                                {% if 'brokerage' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Brokage</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="loan" value="loan" name="permissions"
+                                {% if 'loan' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Loan</label>
+                              </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Manage Master/General Master</th>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="user" value="user" name="permissions"
+                                {% if 'user' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox1">User</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="department" value="department" name="permissions"
+                                {% if 'department' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Department</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="cities" value="cities" name="permissions"
+                                {% if 'cities' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Cities</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="product_name" value="product_name" name="permissions"
+                                {% if 'product_name' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Product Name</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="range" value="range" name="permissions"
+                                {% if 'range' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Range</label>
+                              </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Operations Masters</th>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="manage_builders" value="manage_builders"  name="permissions"
+                                {% if 'manage_builders' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox1">Manage Builders</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="manage_sub_brokerage" value="manage_sub_brokerage" name="permissions"
+                                {% if 'manage_sub_brokerage' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Manage Sub Brokerage</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="sub_product_type_master" value="sub_product_type_master" name="permissions"
+                                {% if 'sub_product_type_master' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Sub Product Type Master</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="expense_head_master" value="expense_head_master" name="permissions"
+                                {% if 'expense_head_master' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Expense Head Master</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="general_expense_master" value="general_expense_master" name="permissions"
+                                {% if 'general_expense_master' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">General Expense Master</label>
+                              </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Report</th>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="lead_report" value="lead_report" name="permissions"
+                                {% if 'lead_report' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox1">Lead Report</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="call_report" value="call_report" name="permissions"
+                                {% if 'call_report' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Call Report</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="without_schedule_calls" value="without_schedule_calls" name="permissions"
+                                {% if 'without_schedule_calls' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Without Schedule Calls</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="customer_booking_report" value="customer_booking_report" name="permissions"
+                                {% if 'customer_booking_report' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Customer Booking Report</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="brokerage_report" value="brokerage_report" name="permissions"
+                                {% if 'brokerage_report' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Brokerage Report</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="lease_brokerage_reports" value="lease_brokerage_reports" name="permissions"
+                                {% if 'lease_brokerage_reports' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Lease Brokerage Reports</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="expense_report" value="expense_report" name="permissions"
+                                {% if 'expense_report' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Expense Report</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="broker" value="broker" name="permissions"
+                                {% if 'broker' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Broker</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="missed_payment_report" value="missed_payment_report" name="permissions"
+                                {% if 'missed_payment_report' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Missed Payment Report</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="sub_broker_payment_report" value="sub_broker_payment_report" name="permissions"
+                                {% if 'sub_broker_payment_report' in permissions   %}
+                                checked
+                                {% endif %}>
+                                <label class="form-check-label" for="inlineCheckbox2">Sub Broker Payment Report</label>
+                              </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+            <div class="row my-5 d-flex align-items-center justify-content-center">
+                <div class="col-8">
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </div>
+            </div>
+               
+              </form>
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}
+    
+    

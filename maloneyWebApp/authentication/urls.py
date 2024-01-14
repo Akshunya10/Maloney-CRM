@@ -6,6 +6,9 @@ urlpatterns = [
     path('',views.userlist,name='userlist'),
     path('add/',views.useradd,name='useradd'),
     path('edit/<int:id>',views.useredit,name='useredit'),
+    path('permission/<int:id>',views.userPermission,name='userpermission'),
+    path('login/',views.userlogin,name="userlogin")
+
 
 
 ]

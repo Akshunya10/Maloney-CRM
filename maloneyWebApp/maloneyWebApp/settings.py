@@ -149,7 +149,7 @@ MEDIA_URL = '/media/'
 
 
 
-# AUTH_USER_MODEL = ('authentication.User')
+# AUTH_USER_MODEL = ('authentication.Users')
 
 #email sending variable
 # EMAIL_HOST = 'smtp.gmail.com'
