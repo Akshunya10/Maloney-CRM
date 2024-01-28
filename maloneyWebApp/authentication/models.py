@@ -48,6 +48,9 @@ class AgeGroup(models.Model):
     class Meta:
         managed = True
         db_table = 'age_group'
+    
+    def __str__(self):
+        return self.group
 
 
 class AlreadyBoughtProperty(models.Model):
@@ -56,6 +59,8 @@ class AlreadyBoughtProperty(models.Model):
     class Meta:
         managed = False
         db_table = 'already_bought_property'
+    def __str__(self):
+        return self.name
 
 
 class AuthGroup(models.Model):
@@ -236,6 +241,9 @@ class Budget(models.Model):
         managed = False
         db_table = 'budget'
 
+    def __str__(self):
+        return self.name
+
 
 class Builder(models.Model):
     name = models.CharField(max_length=300)
@@ -243,6 +251,9 @@ class Builder(models.Model):
     class Meta:
         managed = False
         db_table = 'builder'
+
+    def __str__(self):
+        return self.name
 
 
 class CallDetails(models.Model):
@@ -285,6 +296,9 @@ class Country(models.Model):
     class Meta:
         managed = False
         db_table = 'country'
+
+    def __str__(self):
+        return self.name
 
 
 class CustomerAdditionalDetails(models.Model):
@@ -500,6 +514,9 @@ class EmploymentStatus(models.Model):
         managed = False
         db_table = 'employment_status'
 
+    def __str__(self):
+        return self.status
+
 
 class ExpenseManagement(models.Model):
     employer_id = models.IntegerField()
@@ -548,6 +565,9 @@ class FamilyStatus(models.Model):
         managed = False
         db_table = 'family_status'
 
+    def __str__(self):
+        return self.name
+
 
 class GalleryProperty(models.Model):
     property_id = models.IntegerField()
@@ -564,6 +584,9 @@ class LeadAge(models.Model):
     class Meta:
         managed = False
         db_table = 'lead_age'
+
+    def __str__(self):
+        return self.month
 
 
 class LeadPhase(models.Model):
@@ -588,28 +611,28 @@ class LeadStatus(models.Model):
 
 
 class Leads(models.Model):
-    prospect_name = models.CharField(max_length=300)
-    source = models.IntegerField()
-    mobile = models.CharField(max_length=20)
-    email = models.CharField(max_length=300)
-    address = models.TextField()
+    prospect_name = models.CharField(max_length=300, blank=True, null=True)
+    source = models.IntegerField( blank=True, null=True)
+    mobile = models.CharField(max_length=20, blank=True, null=True)
+    email = models.CharField(max_length=300, blank=True, null=True,default="")
+    address = models.TextField( blank=True, null=True)
     short_desc = models.CharField(max_length=300, blank=True, null=True)
-    assign_user_id = models.IntegerField()
+    assign_user_id = models.IntegerField( blank=True, null=True)
     assigned_by_user_id = models.IntegerField(blank=True, null=True)
-    status = models.IntegerField()
+    status = models.IntegerField( blank=True, null=True)
     assign_date_time = models.DateTimeField(blank=True, null=True)
-    accepted_status = models.CharField(max_length=1)
-    property_type = models.IntegerField()
-    response_time = models.IntegerField()
+    accepted_status = models.CharField(max_length=1, blank=True, null=True)
+    property_type = models.IntegerField( blank=True, null=True)
+    response_time = models.IntegerField( blank=True, null=True)
     zone_type = models.IntegerField(blank=True, null=True)
     project_type = models.IntegerField(blank=True, null=True)
-    project_type_multiple = models.CharField(max_length=500)
+    project_type_multiple = models.CharField(max_length=500, blank=True, null=True)
     budget_type = models.IntegerField(blank=True, null=True)
     inventory_type = models.IntegerField(blank=True, null=True)
     product_type = models.IntegerField(blank=True, null=True)
-    created_by_user = models.IntegerField()
-    leaddelete = models.CharField(db_column='leadDelete', max_length=1)  # Field name made lowercase.
-    modified_date = models.DateTimeField()
+    created_by_user = models.IntegerField( blank=True, null=True)
+    leaddelete = models.CharField(db_column='leadDelete', max_length=1, blank=True, null=True)  # Field name made lowercase.
+    modified_date = models.DateTimeField(blank=True, null=True)
     creation_date = models.DateTimeField(blank=True, null=True)
     lessor = models.CharField(max_length=200, blank=True, null=True)
     lessoramount = models.IntegerField(db_column='lessorAmount', blank=True, null=True)  # Field name made lowercase.
@@ -621,26 +644,80 @@ class Leads(models.Model):
     totalamount = models.IntegerField(db_column='totalAmount', blank=True, null=True)  # Field name made lowercase.
     pendingamount = models.IntegerField(db_column='pendingAmount', blank=True, null=True)  # Field name made lowercase.
     age_group = models.IntegerField(blank=True, null=True)
-    working_member = models.IntegerField()
-    already_bought_property = models.IntegerField()
-    nature_of_lead = models.IntegerField()
-    number_of_visits = models.IntegerField()
-    family_status = models.IntegerField()
-    residential_status = models.IntegerField()
-    residential_country = models.CharField(max_length=300)
-    employment_status = models.IntegerField()
-    profession = models.IntegerField()
-    profession_other = models.CharField(max_length=300)
-    nature_of_business = models.IntegerField()
-    nob_other = models.CharField(max_length=300)
-    lead_status = models.IntegerField()
-    tracker = models.IntegerField()
-    builder = models.IntegerField()
-    lead_age = models.IntegerField()
+    working_member = models.IntegerField( blank=True, null=True)
+    already_bought_property = models.IntegerField( blank=True, null=True)
+    nature_of_lead = models.IntegerField( blank=True, null=True)
+    number_of_visits = models.IntegerField( blank=True, null=True)
+    family_status = models.IntegerField( blank=True, null=True)
+    residential_status = models.IntegerField( blank=True, null=True)
+    residential_country = models.CharField(max_length=300, blank=True, null=True)
+    employment_status = models.IntegerField( blank=True, null=True)
+    profession = models.IntegerField( blank=True, null=True)
+    profession_other = models.CharField(max_length=300, blank=True, null=True)
+    nature_of_business = models.IntegerField( blank=True, null=True)
+    nob_other = models.CharField(max_length=300, blank=True, null=True)
+    lead_status = models.IntegerField( blank=True, null=True)
+    tracker = models.IntegerField( blank=True, null=True)
+    builder = models.IntegerField( blank=True, null=True)
+    lead_age = models.IntegerField( blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'leads'
+class LeadsDuplicate(models.Model):
+    prospect_name = models.CharField(max_length=300, blank=True, null=True)
+    source = models.IntegerField( blank=True, null=True)
+    mobile = models.CharField(max_length=20, blank=True, null=True)
+    email = models.CharField(max_length=300, blank=True, null=True,default="")
+    address = models.TextField( blank=True, null=True)
+    short_desc = models.CharField(max_length=300, blank=True, null=True)
+    assign_user_id = models.IntegerField( blank=True, null=True)
+    assigned_by_user_id = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField( blank=True, null=True)
+    assign_date_time = models.DateTimeField(blank=True, null=True)
+    accepted_status = models.CharField(max_length=1, blank=True, null=True)
+    property_type = models.IntegerField( blank=True, null=True)
+    response_time = models.IntegerField( blank=True, null=True)
+    zone_type = models.IntegerField(blank=True, null=True)
+    project_type = models.IntegerField(blank=True, null=True)
+    project_type_multiple = models.CharField(max_length=500, blank=True, null=True)
+    budget_type = models.IntegerField(blank=True, null=True)
+    inventory_type = models.IntegerField(blank=True, null=True)
+    product_type = models.IntegerField(blank=True, null=True)
+    created_by_user = models.IntegerField( blank=True, null=True)
+    leaddelete = models.CharField( max_length=1, blank=True, null=True)  # Field name made lowercase.
+    modified_date = models.DateTimeField(blank=True, null=True)
+    creation_date = models.DateTimeField(blank=True, null=True)
+    lessor = models.CharField(max_length=200, blank=True, null=True)
+    lessoramount = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
+    lessordays = models.CharField( max_length=300, blank=True, null=True)  # Field name made lowercase.
+    lessee = models.CharField(max_length=300, blank=True, null=True)
+    lesseeamonut = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
+    lesseedays = models.CharField( max_length=100, blank=True, null=True)  # Field name made lowercase.
+    # paydate = models.DateField( blank=True, null=True)  # Field name made lowercase.
+    totalamount = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
+    pendingamount = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
+    age_group = models.IntegerField(blank=True, null=True)
+    working_member = models.IntegerField( blank=True, null=True)
+    already_bought_property = models.IntegerField( blank=True, null=True)
+    nature_of_lead = models.IntegerField( blank=True, null=True)
+    number_of_visits = models.IntegerField( blank=True, null=True)
+    family_status = models.IntegerField( blank=True, null=True)
+    residential_status = models.IntegerField( blank=True, null=True)
+    residential_country = models.CharField(max_length=300, blank=True, null=True)
+    employment_status = models.IntegerField( blank=True, null=True)
+    profession = models.IntegerField( blank=True, null=True)
+    profession_other = models.CharField(max_length=300, blank=True, null=True)
+    nature_of_business = models.IntegerField( blank=True, null=True)
+    nob_other = models.CharField(max_length=300, blank=True, null=True)
+    lead_status = models.IntegerField( blank=True, null=True)
+    tracker = models.IntegerField( blank=True, null=True)
+    builder = models.IntegerField( blank=True, null=True)
+    lead_age = models.IntegerField( blank=True, null=True)
+
+    # class Meta:
+    #     # managed = False
+    #     db_table = 'leads'
 
 
 class ManageBuilders(models.Model):
@@ -772,6 +849,9 @@ class NatureOfBusiness(models.Model):
         managed = False
         db_table = 'nature_of_business'
 
+    def __str__(self):
+        return self.name
+
 
 class NatureOfLead(models.Model):
     name = models.CharField(max_length=300)
@@ -780,6 +860,9 @@ class NatureOfLead(models.Model):
         managed = False
         db_table = 'nature_of_lead'
 
+    def __str__(self):
+        return self.name
+
 
 class NumberOfVisits(models.Model):
     visit = models.CharField(max_length=300)
@@ -787,6 +870,9 @@ class NumberOfVisits(models.Model):
     class Meta:
         managed = False
         db_table = 'number_of_visits'
+
+    def __str__(self):
+        return self.visit
 
 
 class PaymentPlan(models.Model):
@@ -831,6 +917,9 @@ class ProductName(models.Model):
         managed = False
         db_table = 'product_name'
 
+    def __str__(self):
+        return self.name
+
 
 class Profession(models.Model):
     name = models.CharField(max_length=300)
@@ -839,6 +928,9 @@ class Profession(models.Model):
     class Meta:
         managed = False
         db_table = 'profession'
+
+    def __str__(self):
+        return self.name
 
 
 class Project(models.Model):
@@ -849,6 +941,9 @@ class Project(models.Model):
     class Meta:
         managed = False
         db_table = 'project'
+    
+    def __str__(self):
+        return self.name
 
 
 class ProjectStatus(models.Model):
@@ -896,6 +991,9 @@ class PropertyType(models.Model):
         managed = False
         db_table = 'property_type'
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class RangeOptions(models.Model):
     name = models.CharField(max_length=300)
@@ -913,6 +1011,9 @@ class ResidentialStatus(models.Model):
         managed = False
         db_table = 'residential_status'
 
+    def __str__(self):
+        return self.name
+
 
 class ResponseTime(models.Model):
     name = models.CharField(max_length=300)
@@ -920,6 +1021,8 @@ class ResponseTime(models.Model):
     class Meta:
         managed = False
         db_table = 'response_time'
+    def __str__(self) -> str:
+        return self.name
 
 
 class Schedule(models.Model):
@@ -950,6 +1053,9 @@ class Source(models.Model):
         managed = False
         db_table = 'source'
 
+    def __str__(self):
+        return self.name
+
 
 class State(models.Model):
     name = models.CharField(max_length=300)
@@ -967,6 +1073,9 @@ class Tracker(models.Model):
     class Meta:
         managed = False
         db_table = 'tracker'
+
+    def __str__(self):
+        return self.name
 
 
 
@@ -1032,6 +1141,9 @@ class WorkingMember(models.Model):
         managed = False
         db_table = 'working_member'
 
+    def __str__(self):
+        return self.member
+
 
 class Zone(models.Model):
     title = models.CharField(max_length=300)
@@ -1040,3 +1152,5 @@ class Zone(models.Model):
     class Meta:
         managed = False
         db_table = 'zone'
+    def __str__(self) -> str:
+        return self.title

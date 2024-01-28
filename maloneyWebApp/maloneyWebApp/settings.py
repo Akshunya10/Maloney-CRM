@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'authentication',
     'maloneyWebApp',
     'bootstrap4',
+    'lead'
 ]
 
 MIDDLEWARE = [

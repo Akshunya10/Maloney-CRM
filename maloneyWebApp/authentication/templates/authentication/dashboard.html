@@ -1,0 +1,179 @@
+{% extends 'maloneyWebApp/base.html' %}
+
+{% block title %}
+    Dashboard
+{% endblock title %}
+    
+
+
+{% block content %}
+    <div class="container my-5">
+
+        <div class="row">
+            <h5 class="display-5">Today's Assigned</h5>
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr No.</th>
+                        <th scope="col">Prospect Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Short Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Assign Date & Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for lead in today_leads %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{lead.prospect_name}}</td>
+                                <td>{{lead.mobile}}</td>
+                                <td>{{lead.address}}</td>
+                                <td>{{lead.short_desc}}</td>
+                                <td>{{lead.status}}</td>
+                                <td>{{lead.assign_date_time}}</td>
+
+
+
+                           
+                            </tr>
+                        {% endfor %}
+                            
+                  
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <h5 class="display-5">This Week's Assigned</h5>
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr No.</th>
+                        <th scope="col">Prospect Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Short Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Assign Date & Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for lead in week_leads %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{lead.prospect_name}}</td>
+                                <td>{{lead.mobile}}</td>
+                                <td>{{lead.address}}</td>
+                                <td>{{lead.short_desc}}</td>
+                                <td>{{lead.status}}</td>
+                                <td>{{lead.assign_date_time}}</td>
+                            </tr>
+                        {% endfor %}
+                            
+                  
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <h5 class="display-5">All Leads</h5>
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr No.</th>
+                        <th scope="col">Prospect Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Short Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Assign Date & Time</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for lead in leads %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{lead.prospect_name}}</td>
+                                <td>{{lead.mobile}}</td>
+                                <td>{{lead.address}}</td>
+                                <td>{{lead.short_desc}}</td>
+                                <td>{{lead.status}}</td>
+                                <td>{{lead.assign_date_time}}</td>
+                                <td>
+                                    <a class="btn btn-primary my-1" href={% url 'leadedit' lead.id %} role="button">EDIT</a>
+                                    <a class="btn btn-danger my-1" href={% url 'leaddelete' lead.id %} role="button">Delete</a>
+                                </td>
+
+
+
+
+                           
+                            </tr>
+                        {% endfor %}
+                            
+                  
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <h5 class="display-5">Duplicate Leads</h5>
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sr No.</th>
+                        <th scope="col">Prospect Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Short Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Assign Date & Time</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for lead in duplicate_lead %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{lead.prospect_name}}</td>
+                                <td>{{lead.mobile}}</td>
+                                <td>{{lead.address}}</td>
+                                <td>{{lead.short_desc}}</td>
+                                <td>{{lead.status}}</td>
+                                <td>{{lead.assign_date_time}}</td>
+                                <td>
+                                    <a class="btn btn-primary my-1" href={% url 'leadedit' lead.id %} role="button">EDIT</a>
+                                    <a class="btn btn-danger my-1" href={% url 'leaddelete' lead.id %} role="button">Delete</a>
+                                </td>
+
+
+
+
+                           
+                            </tr>
+                        {% endfor %}
+                            
+                  
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
+    

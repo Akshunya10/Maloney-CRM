@@ -7,7 +7,9 @@ urlpatterns = [
     path('add/',views.useradd,name='useradd'),
     path('edit/<int:id>',views.useredit,name='useredit'),
     path('permission/<int:id>',views.userPermission,name='userpermission'),
-    path('login/',views.userlogin,name="userlogin")
+    path('login/',views.userlogin,name="userlogin"),
+    path('dashboard/',views.dashboard,name="dashboard")
+
 
 
 
