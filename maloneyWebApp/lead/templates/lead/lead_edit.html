@@ -1,0 +1,490 @@
+{% extends 'maloneyWebApp/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Edit Lead
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col">
+                <form method="POST">
+                    {% csrf_token %}
+                   
+                        <div class=" row mb-3">
+                            <label for="prospectname" class="form-label">Prospect Name</label>
+                            <input type="text" class="form-control" id="prospect_name" name="prospect_name" value="{{lead.prospect_name}}" required>
+                        </div>
+
+                        <div class="row">
+                        <label for="source" class="form-label">Source</label>
+                        <select class="form-select" aria-label="Default select example" name="source" > 
+                            {% for item in source %}
+                            {% if lead.source == item.id %}
+                            <option value="{{item.id}}" selected>{{item.name}}</option>
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+                            {% endif %}
+                                
+                            
+                            {% endfor %}
+                        </select>
+                        </div>
+
+
+                        <div class="row my-3">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{lead.email}}">
+                                </div>
+                            </div>
+        
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Mobile</label>
+                                    <input type="number" class="form-control" id="mobile" name="mobile" value="{{lead.mobile}}" >
+                                </div>
+                            </div>
+                         </div>
+
+
+                        <div class="row mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" value="{{lead.address}}"></textarea>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Short Description</label>
+                            <textarea class="form-control" id="short_desc" name="short_desc" rows="2" value="{{lead.short_desc}}"></textarea>
+                        </div>
+
+
+                        <div class="row my-3">
+                            <label for="assign_user_id" class="form-label">Assign User Id</label>
+                            <select class="form-select" aria-label="Default select example" name="assign_user_id" required> 
+                                {% for item in users %}
+                                
+                                {% if item.id == lead.assign_user_id %}
+                                <option value="{{item.id}}" selected>{{item.first_name}}</option>
+
+                                    {% else %}
+                                    <option value="{{item.id}}">{{item.first_name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="assigned_by_user_id" class="form-label">Assign By User Id</label>
+                            <select class="form-select" aria-label="Default select example" name="assigned_by_user_id" required> 
+                                {% for item in users %}
+                                
+                                {% if lead.assigned_by_user_id == item.id %}
+                                <option value="{{item.id}}" selected>{{item.first_name}}</option>
+                                {% else %}
+                                <option value="{{item.id}}">{{item.first_name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="row my-3">
+                            <label for="assigned_by_user_id" class="form-label">Status</label>
+                            <select class="form-select" aria-label="Default select example" name="status" > 
+                                {% for item in lead_status %}
+                                
+                                {% if item.id == lead.status %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="row my-3">
+                            <label for="property_type" class="form-label">Property Type</label>
+                            <select class="form-select" aria-label="Default select example" name="property_type" > 
+                                {% for item in property_type %}
+                                
+                                {% if item.id == lead.property_type %}
+    
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+                                    {% else %}
+    
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                {% endif %}
+                                
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        
+                        <div class="row my-3">
+                            <label for="property_type" class="form-label">Response Time</label>
+                            <select class="form-select" aria-label="Default select example" name="response_time" > 
+                                {% for item in response_time %}
+                                
+                                {% if item.id == lead.response_time %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+
+                                    {% else %}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                                                
+                        <div class="row my-3">
+                            <label for="zone_type" class="form-label">Zone Type</label>
+                            <select class="form-select" aria-label="Default select example" name="zone_type" > 
+                                {% for item in zone_type %}
+                                
+                                {% if item.id ==  lead.zone_type %}
+                                <option value="{{item.id}}" selected>{{item.title}}</option>
+                                    {% else %}
+                                    <option value="{{item.id}}">{{item.title}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="project_type" class="form-label">Project Type</label>
+                            <select class="form-select" aria-label="Default select example" name="project_type" > 
+                                {% for item in project_type %}
+                                
+                                {% if item.id == lead.project_type %}
+
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+                                    {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="row my-3">
+                            <label for="project_type" class="form-label">Budget Type</label>
+                            <select class="form-select" aria-label="Default select example" name="budget_type" > 
+                                {% for item in budget_type %}
+                                
+                                {% if item.id == lead.budget_type %}
+                                      
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+                                    {% else %}
+      
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                {% endif %}
+                              
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="row my-3">
+                            <label for="product_type" class="form-label">Product Type</label>
+                            <select class="form-select" aria-label="Default select example" name="product_type" > 
+                                {% for item in product_type %}
+                                
+                                {% if item.id == lead.product_type %}
+
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+                                    {% else %}
+
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="product_type" class="form-label">Product Type</label>
+                            <select class="form-select" aria-label="Default select example" name="product_type" > 
+                                {% for item in product_type %}
+                                
+                                {% if item.id == lead.product_type %}
+
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+                                    {% else %}
+
+                                <option value="{{item.id}}">{{item.name}}</option>
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="age_group" class="form-label">Age Group</label>
+                            <select class="form-select" aria-label="Default select example" name="age_group" > 
+                                {% for item in age_group %}
+                                
+                                {% if item.id == lead.age_group %}
+                                    
+                                <option value="{{item.id}}" selected>{{item.group}}</option>
+                                {% else %}
+                                    
+                                <option value="{{item.id}}">{{item.group}}</option>
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="working_member" class="form-label">Working Member</label>
+                            <select class="form-select" aria-label="Default select example" name="working_member" > 
+                                {% for item in working_member %}
+                                
+                                {% if item.id == lead.working_member %}
+        
+                                <option value="{{item.id}}" selected >{{item.member}}</option>
+                                {% else %}
+                                    
+                                <option value="{{item.id}}">{{item.member}}</option>
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="already_bought_property" class="form-label">Already Bought Property</label>
+                            <select class="form-select" aria-label="Default select example" name="already_bought_property" > 
+                                {% for item in already_bought_property %}
+                                
+                                {% if item.id == lead.already_bought_property %}
+                                    
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+                                {% else %}      
+                                <option value="{{item.id}}">{{item.name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="nature_of_lead" class="form-label">Nature Of Lead</label>
+                            <select class="form-select" aria-label="Default select example" name="nature_of_lead" > 
+                                {% for item in nature_of_lead %}
+                                
+                                {% if item.id == lead.nature_of_lead  %}
+                                <option value="{{item.id}}"selected >{{item.name}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="number_of_visit" class="form-label">Number Of Visit</label>
+                            <select class="form-select" aria-label="Default select example" name="number_of_visits" > 
+                                {% for item in number_of_visit %}
+                                
+                                {% if item.id == lead.number_of_visits %}
+                                <option value="{{item.id}}" selected>{{item.visit}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.visit}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Family Status</label>
+                            <select class="form-select" aria-label="Default select example" name="family_status" > 
+                                {% for item in family_status %}
+                                
+                                {% if item.id == lead.family_status %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                   
+
+                        {% comment %} <div class="row my-3">
+                            <label for="family_status" class="form-label">Residential Status</label>
+                            <select class="form-select" aria-label="Default select example" name="residential_status" > 
+                                {% for item in residential_status %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Residential Country</label>
+                            <select class="form-select" aria-label="Default select example" name="residential_country" > 
+                                {% for item in residential_country %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div> {% endcomment %}
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Employment Status</label>
+                            <select class="form-select" aria-label="Default select example" name="employment_status" > 
+                                {% for item in employment_status %}
+                                
+                                {% if item.id == lead.employment_status %}
+                                <option value="{{item.id}}" selected>{{item.status}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.status}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Profession</label>
+                            <select class="form-select" aria-label="Default select example" name="profession" > 
+                                {% for item in profession %}
+                                
+                                {% if item.id == lead.profession %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Nature Of Bussiness</label>
+                            <select class="form-select" aria-label="Default select example" name="nature_of_business" > 
+                                {% for item in nature_of_business %}
+                                
+                                {% if item.id == lead.nature_of_business %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Lead Status</label>
+                            <select class="form-select" aria-label="Default select example" name="lead_status" > 
+                                {% for item in lead_status %}
+                                
+                                {% if item.id == lead.lead_status %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Tracker</label>
+                            <select class="form-select" aria-label="Default select example" name="tracker" > 
+                                {% for item in tracker %}
+                                
+                                {% if item.id == lead.tracker %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Builder</label>
+                            <select class="form-select" aria-label="Default select example" name="builder" > 
+                                {% for item in builder %}
+                                
+                                {% if item.id == lead.builder %}
+                                <option value="{{item.id}}" selected>{{item.name}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.name}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="row my-3">
+                            <label for="family_status" class="form-label">Lead Age</label>
+                            <select class="form-select" aria-label="Default select example" name="lead_age" > 
+                                {% for item in lead_age %}
+                                
+                                {% if item.id == lead.lead_age %}
+                                <option value="{{item.id}}" selected>{{item.month}}</option>
+
+                                {% else %}
+                                <option value="{{item.id}}">{{item.month}}</option>
+
+                                {% endif %}
+                                    
+                                {% endfor %}
+                            </select>        
+               
+            </div>
+        </div>
+
+        <div class="row my-5 d-flex align-items-center justify-content-center">
+            <div class="col-8">
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+        </div>
+
+    </form>
+    </div>
+    
+{% endblock content %}
+    
+    

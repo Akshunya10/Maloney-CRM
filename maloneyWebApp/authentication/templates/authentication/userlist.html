@@ -1,0 +1,65 @@
+{% extends 'maloneyWebApp/base.html' %}
+{% load lower_filter %} 
+
+{% block title %}
+    User List
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col col-10">
+            <h1 class="display-5">Users</h1>
+        </div>
+        <div class="col ">
+            <a class="btn btn-primary w-50" href={% url 'useradd' %} role="button" >Add</a>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for user in userdata %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phone}}</td>
+                        <td>{{department|return_item:user.department_id }}</td>
+                        {% if user.status == '1' %}
+                        <td style="color:green;">Active</td>
+                        {% else %}
+                        <td style="color:red;">Inactive</td>
+                    {% endif %}
+                        <td>
+                            <a class="btn btn-primary" href={% url 'useredit' user.id %} role="button">EDIT</a>
+                            <a class="btn btn-primary" href={% url 'userpermission' user.id %} role="button">PERMISSION</a>
+                        </td>
+    
+                      </tr>
+                    {% endfor %}
+                        
+              
+             
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+    
+    

@@ -1,0 +1,81 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'dashboard' %}">Maloney</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}" role="button" data-bs-toggle="" aria-expanded="false">
+                  Dashboard
+                </a>
+                <!-- <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Dashboard option</a></li>
+                  <li><a class="dropdown-item" href="#">Dashboard option</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Dashboard option</a></li>
+                </ul> -->
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Marketing & Sales
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'leadadd' %}">Create Lead</a></li>
+                  <li><a class="dropdown-item" href="#">All Leads</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">M&S option</a></li>
+                </ul>
+              </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Lease Propery
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Lease option</a></li>
+              <li><a class="dropdown-item" href="#">Lease option</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Lease option</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Manage Masters
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">General Master</a></li>
+              <li><a class="dropdown-item" href="{% url 'userlist' %}">Users</a></li>
+
+              
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Operations Master</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">General Expense Master</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Reports
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Reportoption</a></li>
+              <li><a class="dropdown-item" href="#">Report option</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Report option</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <span>{{request.user.email}}</span>
+        
+        <!-- <form class="d-flex" role="search">
+          <span>{{request.user.email}}</span>
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+      </div>
+    </div>
+  </nav>
