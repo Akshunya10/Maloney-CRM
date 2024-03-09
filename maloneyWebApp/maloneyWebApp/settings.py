@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+# 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
 import os
 from pathlib import Path
 import pymysql

@@ -1,0 +1,40 @@
+{% extends 'maloneyWebApp/base.html' %}
+
+{% block title %}
+    Lead Assign
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-8">
+                <div class="row">
+                    Sort By :  
+                    <select class="form-select w-50 mx-2" aria-label="Default select example" name="schedulefilter" >          
+                        <option value=1>Completed</option>  
+                         <option value=0>Pending</option>
+                    </select>
+                   
+                </div>
+               
+            </div>
+            <div class="col-4">
+                <a class="btn btn-primary" href={% url 'scheduleAdd' %}>Add Schedule</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+    

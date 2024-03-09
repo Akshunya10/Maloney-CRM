@@ -164,21 +164,22 @@ def dashboard(request):
         one_week_ago = datetime.today() + timedelta(days=6)
         print('one week ago',one_week_ago.date())
         maloney_user=Users.objects.filter(email=request.user.email).first()
+        if(maloney_user):
 
         # today's lead        
-        today_lead=Leads.objects.filter(assign_user_id=maloney_user.id).filter(assign_date_time__date=datetime.today().date())[0:10]
-        context['today_leads']=today_lead
-        print('today lead',len(today_lead))
+            today_lead=Leads.objects.filter(assign_user_id=maloney_user.id).filter(assign_date_time__date=datetime.today().date())[0:10]
+            context['today_leads']=today_lead
+            print('today lead',len(today_lead))
 
-        # all lead
-        leads=Leads.objects.filter(assign_user_id=maloney_user.id)[0:10]
-        context['leads']=leads
-        print('leads',len(leads))
+            # all lead
+            leads=Leads.objects.filter(assign_user_id=maloney_user.id)[0:10]
+            context['leads']=leads
+            print('leads',len(leads))
 
-        # 1 week's lead
-        week_lead=Leads.objects.filter(assign_user_id=maloney_user.id).filter(assign_date_time__date__gte=datetime.today().date(),assign_date_time__date__lte=one_week_ago.date())
-        context['week_leads']=week_lead
-        print('this week lead',week_lead.values_list())
+            # 1 week's lead
+            week_lead=Leads.objects.filter(assign_user_id=maloney_user.id).filter(assign_date_time__date__gte=datetime.today().date(),assign_date_time__date__lte=one_week_ago.date())
+            context['week_leads']=week_lead
+            print('this week lead',week_lead.values_list())
 
         # missed lead
 

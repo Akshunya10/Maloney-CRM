@@ -39,14 +39,14 @@ class AddLeaseProperty(models.Model):
     cheque_lessor = models.CharField(max_length=1000)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'add_lease_property'
 
 class AgeGroup(models.Model):
     group = models.CharField(max_length=300)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'age_group'
     
     def __str__(self):
@@ -662,8 +662,9 @@ class Leads(models.Model):
     lead_age = models.IntegerField( blank=True, null=True)
 
     class Meta:
-        # managed = False
+        managed = False
         db_table = 'leads'
+
 class LeadsDuplicate(models.Model):
     prospect_name = models.CharField(max_length=300, blank=True, null=True)
     source = models.IntegerField( blank=True, null=True)
@@ -688,21 +689,23 @@ class LeadsDuplicate(models.Model):
     leaddelete = models.CharField( max_length=1, blank=True, null=True)  # Field name made lowercase.
     modified_date = models.DateTimeField(blank=True, null=True)
     creation_date = models.DateTimeField(blank=True, null=True)
-    lessor = models.CharField(max_length=200, blank=True, null=True)
-    lessoramount = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
-    lessordays = models.CharField( max_length=300, blank=True, null=True)  # Field name made lowercase.
-    lessee = models.CharField(max_length=300, blank=True, null=True)
-    lesseeamonut = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
-    lesseedays = models.CharField( max_length=100, blank=True, null=True)  # Field name made lowercase.
+    # lessor = models.CharField(max_length=200, blank=True, null=True)
+    # lessoramount = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
+    # lessordays = models.CharField( max_length=300, blank=True, null=True)  # Field name made lowercase.
+    # lessee = models.CharField(max_length=300, blank=True, null=True)
+    # lesseeamonut = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
+    # lesseedays = models.CharField( max_length=100, blank=True, null=True)  # Field name made lowercase.
     # paydate = models.DateField( blank=True, null=True)  # Field name made lowercase.
     totalamount = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
     pendingamount = models.IntegerField( blank=True, null=True)  # Field name made lowercase.
-    age_group = models.IntegerField(blank=True, null=True)
+    # age_group = models.IntegerField(blank=True, null=True)
     working_member = models.IntegerField( blank=True, null=True)
     already_bought_property = models.IntegerField( blank=True, null=True)
     nature_of_lead = models.IntegerField( blank=True, null=True)
     number_of_visits = models.IntegerField( blank=True, null=True)
-    family_status = models.IntegerField( blank=True, null=True)
+    # family_status = models.IntegerField( blank=True, null=True)
+
+    
     residential_status = models.IntegerField( blank=True, null=True)
     residential_country = models.CharField(max_length=300, blank=True, null=True)
     employment_status = models.IntegerField( blank=True, null=True)
@@ -711,13 +714,13 @@ class LeadsDuplicate(models.Model):
     nature_of_business = models.IntegerField( blank=True, null=True)
     nob_other = models.CharField(max_length=300, blank=True, null=True)
     lead_status = models.IntegerField( blank=True, null=True)
-    tracker = models.IntegerField( blank=True, null=True)
+    # tracker = models.IntegerField( blank=True, null=True)
     builder = models.IntegerField( blank=True, null=True)
-    lead_age = models.IntegerField( blank=True, null=True)
+    # lead_age = models.IntegerField( blank=True, null=True)
 
-    # class Meta:
-    #     # managed = False
-    #     db_table = 'leads'
+    class Meta:
+        managed = False
+        # db_table = 'leads'
 
 
 class ManageBuilders(models.Model):

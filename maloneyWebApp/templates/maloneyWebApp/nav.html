@@ -9,13 +9,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dashboard
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Dashboard option</a></li>
-                  <li><a class="dropdown-item" href="#">Dashboard option</a></li>
-                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item"  href={% url 'dashboard' %}>Sales Dashboard</a></li>
                   <li><a class="dropdown-item" href="#">Dashboard option</a></li>
                 </ul>
               </li>
@@ -24,10 +22,10 @@
                   Marketing & Sales
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">M&S option</a></li>
-                  <li><a class="dropdown-item" href="#">M&S option</a></li>
+                  <li><a class="dropdown-item" href={% url 'useradd' %}>Leads</a></li>
+                  <li><a class="dropdown-item" href="#">Assign Leads</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">M&S option</a></li>
+                  <li><a class="dropdown-item" href={% url 'schedulehome' %}>Schedule Manager</a></li>
                 </ul>
               </li>
           <li class="nav-item dropdown">

@@ -1,0 +1,114 @@
+{% extends 'maloneyWebApp/base.html' %}
+
+{% block title %}
+    Schedules
+{% endblock title %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-8">
+                <div class="row">
+                    Sort By :  
+                    <select class="form-select w-50 mx-2" aria-label="Default select example" name="schedulefilter" >          
+                        <option value=1>Completed</option>  
+                         <option value=0>Pending</option>
+                    </select>
+                   
+                </div>
+               
+            </div>
+            <div class="col-4">
+                <a class="btn btn-primary" href={% url 'scheduleAdd' %}>Add Schedule</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Prospect Name</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Schedule By</th>
+                        <th scope="col">Schedule Datetime</th>
+                        <th scope="col">Schedule Type</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for schedule in schedules  %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                
+                                <td>
+                                {% for lead in leads  %}
+                                   
+                                    {% if lead.id == schedule.lead_id %}
+                                        {{lead.prospect_name}}
+                                    {% endif %}
+                                        
+                                {% endfor %}
+                                    
+                                </td>
+                                <td>
+                                    {% for lead in leads  %}
+                                        
+                                        {% if lead.id == schedule.lead_id %}
+
+                                            {{lead.mobile}}
+                                        {% endif %}
+                                            
+                                    {% endfor %}
+                                        
+                                    </td>
+                                <td>
+                                    
+                                    {% for user in users %}
+                                        {% if user.id == schedule.schedule_by_user %}
+                                       
+                                        {{user.first_name}} {{user.last_name}}
+                                        {% endif %}
+                                    {% endfor %}
+                                 
+                                </td>
+                                <td>{{schedule.nextdatetime}}</td>
+                                <td>
+                                    
+                                    {% if schedule.nexttype == 'm' %}
+                                    Meeting
+                                    {% endif %}
+                                    {% if schedule.nexttype == 'f' %}
+                                    Follow Up
+                                    {% endif %}
+                                    {% if schedule.nexttype == 's' %}
+                                    Site Visit
+                                    {% endif %}
+                                        
+                                    
+                                </td>
+                                <td>
+                                    
+                                    {% if schedule.status == 0 %}
+                                        Pending
+                                    {% else %}
+                                        Completed
+                                    {% endif %}
+                                     </td>
+                             
+                            </tr>
+                        {% endfor %}
+                  
+                 
+                    </tbody>
+                  </table>
+                
+               
+                    
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+    

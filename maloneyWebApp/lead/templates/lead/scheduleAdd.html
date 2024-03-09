@@ -1,0 +1,72 @@
+{% extends 'maloneyWebApp/base.html' %}
+
+{% block title %}
+    Schedules Add
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-8">
+                <h1>Add Schedule</h1>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <form method="POST">
+                        {% csrf_token %}
+                      <tr>
+                        <th scope="row">Name Of Prospect</th>
+                        <td>
+                            <select class="form-select" aria-label="Default select example" name="lead_id" > 
+                                {% for item in leads %}
+                                <option value="{{item.id}}">{{item.prospect_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Schedule Type</th>
+                        <td>
+                            <select class="form-select" aria-label="Default select example" name="nexttype" > 
+                                
+                                <option value="f">Follow Up Call</option>
+                                   
+                                 <option value="m">Meeting</option>
+
+                                 <option value="s">Site Visit</option>
+                        
+                            </select>
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <th scope="row">Next Schedule Date Time</th>
+                        <td colspan="2">
+                            <input class="form-control" type="datetime-local" name="nextdatetime"/>
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <td>
+                        <div class="col my-3">
+                            <button type="submit" class="btn btn-primary w-100">Submit</button>
+                        </div>
+                    </td>
+                      </tr>
+                    </form>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+    
