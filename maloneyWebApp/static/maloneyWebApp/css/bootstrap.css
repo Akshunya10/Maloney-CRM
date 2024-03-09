@@ -645,13 +645,13 @@ progress {
 }
 
 .display-5 {
-  font-size: calc(1.425rem + 2.1vw);
-  font-weight: 300;
+  font-size: calc(1rem + 1.5vw);
+  font-weight: 200;
   line-height: 1.2;
 }
 @media (min-width: 1200px) {
   .display-5 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
@@ -12064,5 +12064,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+
 
 /*# sourceMappingURL=bootstrap.css.map */

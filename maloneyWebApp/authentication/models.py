@@ -39,14 +39,14 @@ class AddLeaseProperty(models.Model):
     cheque_lessor = models.CharField(max_length=1000)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'add_lease_property'
 
 class AgeGroup(models.Model):
     group = models.CharField(max_length=300)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'age_group'
     
     def __str__(self):
@@ -662,8 +662,9 @@ class Leads(models.Model):
     lead_age = models.IntegerField( blank=True, null=True)
 
     class Meta:
-        # managed = False
+        managed = False
         db_table = 'leads'
+        
 class LeadsDuplicate(models.Model):
     prospect_name = models.CharField(max_length=300, blank=True, null=True)
     source = models.IntegerField( blank=True, null=True)

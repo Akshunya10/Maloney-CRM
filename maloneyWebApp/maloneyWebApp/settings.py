@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'maloneyWebApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'maloneyDB',
+        'NAME': 'maloney',
         'USER': 'root',
-        'PASSWORD': '#Satish1#',
+        'PASSWORD': 'root',
         'HOST':'localhost',
         'PORT':'3306',
     }

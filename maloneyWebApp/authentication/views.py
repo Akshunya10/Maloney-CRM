@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
 # from django.contrib.auth.models import User
-import datetime
 from django.contrib.auth import authenticate,login,get_user_model,logout
 # from authentication.forms import UserForm
 from datetime import datetime, timedelta
@@ -59,7 +58,7 @@ def useradd(request):
             department=request.POST.get('department')
             usertype=request.POST.get('usertype')
             status=request.POST.get('status')
-            joindate= datetime.datetime.now()
+            joindate= datetime.now()
             print('firstname',first_name,last_name,email,phone,password,department,usertype,status,joindate)
             if(User.objects.filter(email=email).count()==0):
                 user=Users(first_name=first_name,last_name=last_name,email=email,password=password,phone=phone,department_id=department,users_type=usertype,join_date=joindate,status=status)
@@ -96,7 +95,7 @@ def useredit(request,id):
             department=request.POST.get('department')
             usertype=request.POST.get('usertype')
             status=request.POST.get('status')
-            join_date=datetime.datetime.now()
+            join_date=datetime.now()
             
             print('firstname',first_name,last_name,email,phone,password,department,usertype,status,dbuser.join_date)
             if(dbuser):
